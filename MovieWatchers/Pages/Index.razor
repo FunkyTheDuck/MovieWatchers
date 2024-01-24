@@ -1,0 +1,32 @@
+﻿@page "/"
+@using Models;
+<PageTitle>Movie Watchers</PageTitle>
+
+<div>
+    <input placeholder="søg..." @bind="SearchQuery" />
+    <button @onclick="GetMovieFromSearchQueryAsync" class="btn btn-primary">Søg</button>
+</div>
+@if (Movie != null)
+{
+    @if (Movie.titleResults != null && Movie.titleResults.results != null)
+    {
+        <div class="my-container ">
+            @foreach (Result movies in Movie.titleResults.results)
+            {
+                <div class="movie-card">
+                    @if(movies.titlePosterImageModel != null)
+                    {
+                        <img class="card-img-top" src="@movies.titlePosterImageModel.url" alt="Card image cap">
+                    }
+                    else
+                    {
+                        <img class="card-img-top" src="../images/no-image.png" alt="Card image cap">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@movies.titleNameText</h5>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}

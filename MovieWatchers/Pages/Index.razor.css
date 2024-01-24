@@ -1,0 +1,14 @@
+﻿body {
+}
+
+.my-container {
+    display: flex; 
+    justify-content: space-around;
+    height: 550px;
+}
+.movie-card {
+    border: solid 1px black;
+    height: 100%;
+    max-height: 500px;
+    max-width: 250px;
+}
