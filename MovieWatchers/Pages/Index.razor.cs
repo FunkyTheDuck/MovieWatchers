@@ -1,26 +1,31 @@
 ﻿using CLFacade;
-using Models;
+using Microsoft.AspNetCore.Components;
+using Models.MovieModels;
+using MyModels;
+using System.Linq;
 
 namespace MovieWatchers.Pages
 {
     partial class Index
     {
-        public Rootobject Movie { get; set; }
+        public List<Movie> Movies { get; set; }
         public string SearchQuery { get; set; }
 
-        Repository repo;
+        [Inject]
+        IRepository repo { get; set; }
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if(firstRender)
             {
-                repo = new Repository();
+
             }
         }
         public async Task GetMovieFromSearchQueryAsync()
         {
             if(!string.IsNullOrEmpty(SearchQuery))
             {
-                Movie = await repo.GetMovieFromSearchQueryAsync(SearchQuery);
+                Movies = await repo.GetMoviesFromSearchQueryAsync(SearchQuery);
+                Movies = Movies.OrderBy(x => x.Popularity).ToList();
                 StateHasChanged();
             }
         }

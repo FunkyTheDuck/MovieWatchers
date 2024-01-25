@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Keywordresults
+    public class Genre
     {
-        public object[] results { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
     }
 }

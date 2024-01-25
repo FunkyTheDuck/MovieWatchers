@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Companyresults
+    public class Production_Countries
     {
-        public object[] results { get; set; }
+        public string iso_3166_1 { get; set; }
+        public string name { get; set; }
     }
 }

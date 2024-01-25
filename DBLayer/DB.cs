@@ -1,14 +1,21 @@
-﻿using Models;
+﻿using Microsoft.Extensions.Configuration;
+using Models.MovieModels;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace DBLayer
 {
     public class DB
     {
         private HttpClient httpClient;
-        public DB()
+        IConfiguration configuration;
+        public DB(IConfiguration configuration)
         {
             httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {configuration.GetConnectionString("Access-Token-Auth")}");
+            httpClient.DefaultRequestHeaders.Add("accept", "application/json");
+
+            this.configuration = configuration;
         }
 
         public async Task<Rootobject> GetMovieAsync()
@@ -16,23 +23,18 @@ namespace DBLayer
             //delete later
             return null;
         }
-        public async Task<Rootobject> GetMovieFromSearchQueryAsync(string query)
+        public async Task<Rootobject> GetMoviesFromSearchQueryAsync(string query)
         {
-            HttpRequestMessage request = new HttpRequestMessage
+            string apiUrl = $"https://api.themoviedb.org/3/search/movie?query={query}&include_adult=false&language=en-US&page=1";
+            HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
             {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://imdb146.p.rapidapi.com/v1/find/?query={query}?limit=10"),
-                Headers =
-                    {
-                        { "X-RapidAPI-Key", "943bc96754mshe84051ff549103ap1db219jsn19262270f0e3" },
-                        { "X-RapidAPI-Host", "imdb146.p.rapidapi.com" }
-                    }
-            };
-            HttpResponseMessage responseMessage = await httpClient.SendAsync(request);
-            responseMessage.EnsureSuccessStatusCode();
-            string json = await responseMessage.Content.ReadAsStringAsync();
-            Rootobject movie = JsonConvert.DeserializeObject<Rootobject>(json);
-            return movie;
+                string content = await response.Content.ReadAsStringAsync();
+                Rootobject robj = JsonConvert.DeserializeObject<Rootobject>(content);
+                return robj;
+            }
+            return null;
         }
     }
 }
