@@ -8,14 +8,11 @@ namespace DBLayer
     public class DB
     {
         private HttpClient httpClient;
-        IConfiguration configuration;
         public DB(IConfiguration configuration)
         {
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {configuration.GetConnectionString("Access-Token-Auth")}");
             httpClient.DefaultRequestHeaders.Add("accept", "application/json");
-
-            this.configuration = configuration;
         }
 
         public async Task<Rootobject> GetMovieAsync()
