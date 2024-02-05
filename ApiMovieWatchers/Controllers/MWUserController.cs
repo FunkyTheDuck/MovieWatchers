@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ApiCLFacade;
+using Microsoft.AspNetCore.Mvc;
+using MyApiModels;
 
 namespace ApiMovieWatchers.Controllers
 {
@@ -6,10 +8,27 @@ namespace ApiMovieWatchers.Controllers
     [Route("[controller]")]
     public class MWUserController : ControllerBase
     {
-        [HttpGet]
+        IUserRepository userRepo;
+        public MWUserController(IUserRepository userRepo)
+        {
+            this.userRepo = userRepo;
+        }
+        [HttpGet("id")]
         public async Task<IActionResult> GetOneUser(int id)
         {
-            return Ok(id);
+            if(id != 0)
+            {
+                User user = await userRepo.GetOneUserAsync(id);
+                if(user != null)
+                {
+                    return Ok(user);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            return BadRequest();
         }
     }
 }
