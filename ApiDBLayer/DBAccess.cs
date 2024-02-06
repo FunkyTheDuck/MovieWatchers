@@ -42,14 +42,16 @@ namespace ApiDBLayer
 
         #region MovieRegion
 
-        public async Task<bool> SaveMovieAsync(Movie movie)
-        {
-            string query = $"EXEC SaveMovie @id, @title, @description, @posterUrl";
+
+        public async Task<bool> SaveMovieAsync(Movie movie, int userId)
+        { 
+            string query = $"EXEC UserLikedMovieAndSaveIt @movieId, @title, @description, @posterUrl, @userId";
             SqlCommand command = new(query);
             command.Parameters.Add("@id", SqlDbType.VarChar, 50).Value = movie.Id;
             command.Parameters.Add("@title", SqlDbType.VarChar, 50).Value = movie.Title;
             command.Parameters.Add("@description", SqlDbType.VarChar, 200).Value = movie.Description;
             command.Parameters.Add("@posterUrl", SqlDbType.VarChar, 50).Value = movie.Poster_Url;
+            command.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
             command.Connection = dbConn;
             await dbConn.OpenAsync();
             await command.ExecuteReaderAsync();

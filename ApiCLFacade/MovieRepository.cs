@@ -9,17 +9,16 @@ using MyApiModels;
 
 namespace ApiCLFacade
 {
-    public class MovieRepository
+    public class MovieRepository : IMovieRepository
     {
         DBAccess db;
         public MovieRepository(IConfiguration configuration)
         {
             db = new(configuration);
         }
-        public async Task<bool> SaveMovieAsync(Movie movie)
+        public async Task<bool> SaveMovieAsync(Movie movie, int userId)
         {
-
-            return false;
+            return await db.SaveMovieAsync(movie, userId);
         }
     }
 }
