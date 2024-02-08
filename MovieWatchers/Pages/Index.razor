@@ -15,11 +15,11 @@
             <div class="movie-card">
                 @if (!string.IsNullOrEmpty(movie.Poster_Url))
                 {
-                    <img class="card-img-top" src="@movie.Poster_Url" alt="Card image cap">
+                    <img class="card-img-top" style="box-shadow: 2px 2px 4px @movie.PosterDominantColor" src="@movie.Poster_Url" alt="Card image cap">
                 }
                 else
                 {
-                    <img class="card-img-top" src="../images/no-image.png" alt="Card image cap">
+                    <img class="card-img-top" style="box-shadow: 2px 2px 4px @movie.PosterDominantColor" src="../images/no-image.png" alt="Card image cap">
                 }
                 <div class="card-body">
                     <h5 class="card-title">@movie.Title</h5>

@@ -12,6 +12,7 @@ namespace MyModels
         public string Title { get; set; }
         public string Description { get; set; }
         public string Poster_Url { get; set; }
+        public string PosterDominantColor { get; set; }
         public float Popularity { get; set; }
 
     }
