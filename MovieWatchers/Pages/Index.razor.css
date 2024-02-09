@@ -14,3 +14,14 @@
     max-height: 500px;
     max-width: 250px;
 }
+.input {
+    border-bottom: solid yellow 2px;
+    color: white;
+    background-color: #2c2629;
+    outline: none;
+}
+.input-div {
+    margin-top: 3vh;
+    display: flex;
+    justify-content: center;
+}
