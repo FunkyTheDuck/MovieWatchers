@@ -1,0 +1,17 @@
+﻿@page "/login"
+@using Components
+
+<div class="background-container">
+    <div class="background">
+
+        @if (!SigningUp)
+        {
+            <LogInComp />
+        }
+        else
+        {
+            <SignUpComp />
+        }
+
+    </div>
+</div>

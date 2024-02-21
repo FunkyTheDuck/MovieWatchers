@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiCLFacade", "ApiCLFacade\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiMovieWatchers", "ApiMovieWatchers\ApiMovieWatchers.csproj", "{3E018E65-09D9-4EA6-B099-9233D344B96F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApiModels", "MyApiModels\MyApiModels.csproj", "{0AA6513F-B035-45BB-B057-A3BC8E7D989F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyApiModels", "MyApiModels\MyApiModels.csproj", "{0AA6513F-B035-45BB-B057-A3BC8E7D989F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Components", "Components\Components.csproj", "{080EBB8A-1DD2-4A6E-A6FA-EAB9178A3EA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{0AA6513F-B035-45BB-B057-A3BC8E7D989F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AA6513F-B035-45BB-B057-A3BC8E7D989F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AA6513F-B035-45BB-B057-A3BC8E7D989F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{080EBB8A-1DD2-4A6E-A6FA-EAB9178A3EA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{080EBB8A-1DD2-4A6E-A6FA-EAB9178A3EA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{080EBB8A-1DD2-4A6E-A6FA-EAB9178A3EA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{080EBB8A-1DD2-4A6E-A6FA-EAB9178A3EA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

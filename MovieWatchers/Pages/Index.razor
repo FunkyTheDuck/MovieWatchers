@@ -1,6 +1,6 @@
 ﻿@page "/"
-@using Models.MovieModels;
 @using MyModels;
+@using Components;
 <PageTitle>Movie Watchers</PageTitle>
 
 <div class="input-div">
@@ -10,21 +10,16 @@
 @if (Movies != null)
 {
     <div class="my-container text-white">
-        @foreach (Movie movie in Movies)
+        @for (int i = 0; i < MovieListCount; i++)
         {
-            <div class="movie-card">
-                @if (!string.IsNullOrEmpty(movie.Poster_Url))
-                {
-                    <img class="card-img-top" style="box-shadow: 0px 0px 20px @movie.PosterDominantColor" src="@movie.Poster_Url" alt="Card image cap">
-                }
-                else
-                {
-                    <img class="card-img-top" src="../images/no-image.png" alt="Card image cap">
-                }
-                <div class="card-body">
-                    <h5 class="card-title">@movie.Title</h5>
-                </div>
-            </div>
+            if(i < Movies.Count)
+            {
+                <MovieCardComp movie="@Movies[i]" />
+            }
+            else
+            {
+                <MovieCardComp movie="null"/>
+            }
         }
     </div>
 }
